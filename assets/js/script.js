@@ -7,10 +7,15 @@ var tasksToDoEl = document.querySelector("#tasks-to-do");
 
 
 var taskFormHandler = function (event) {
+    
     event.preventDefault();
     var taskNameInput = document.querySelector("input[name='task-name']").value;
     var taskTypeInput = document.querySelector("select[name='task-type']").value;
-
+    
+    if (!taskNameInput || !taskTypeInput) {
+        alert("You need to fill out the task form!");
+        return false;
+    }
     // package up data as an object
     var taskDataobj = {
         name: taskNameInput,
@@ -19,6 +24,7 @@ var taskFormHandler = function (event) {
 
     createTaskEl(taskDataobj);
 
+    formEl.reset();
 };
 
 var createTaskEl = function (taskDataobj) {
